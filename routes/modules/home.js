@@ -15,4 +15,9 @@ router.get('/register', (req, res) => {
   res.render('register')
 })
 
+router.get('/logout', (req, res) => {
+  req.logOut()
+  res.redirect('/login')
+})
+
 module.exports = router
