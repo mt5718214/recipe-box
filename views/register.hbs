@@ -1,0 +1,29 @@
+<form class="form-register mx-auto" action="/register" method="POST" style="width: 50%;">
+  <div class="text-center mb-4">
+    <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+  </div>
+  <div class="form-label-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" class="form-control" placeholder="Name" required>
+  </div>
+  <div class="form-label-group">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
+  </div>
+  <div class="form-label-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+  </div>
+  <div class="form-label-group">
+    <label for="passwordCheck">Password Check</label>
+    <input type="password" name="passwordCheck" id="passwordCheck" class="form-control" placeholder="Password Check"
+      required>
+  </div>
+  <br />
+  <div class="d-grid gap-2">
+    <button class="btn btn-primary" type="submit">Register</button>
+  </div>
+  <div class="text-center mb-4">
+    <p><a href="/login">Login</a></p>
+  </div>
+</form>
