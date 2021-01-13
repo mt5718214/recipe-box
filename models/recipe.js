@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Recipe.hasMany(models.Ingredient)
       Recipe.hasMany(models.Direction)
+      Recipe.belongsTo(models.User)
     }
   };
   Recipe.init({

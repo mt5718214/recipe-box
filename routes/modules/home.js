@@ -46,7 +46,7 @@ router.post('/register', (req, res) => {
   User.findOne({ where: { email } })
     .then(user => {
       if (!user) {
-        bcrypt
+        return bcrypt
           .genSalt(10)
           .then(salt => bcrypt.hash(password, salt))
           .then(hash => User.create({
