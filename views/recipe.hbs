@@ -1,0 +1,14 @@
+<div class="row">
+  {{#each user.Recipes}}
+  <div class="col-12 col-md-4">
+    <div class="card">
+      <a href="/recipes/{{this.id}}">
+        <img src="{{this.image}}" class="card-img-top" alt="image">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">{{this.name}}</h5>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+</div>

@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   Recipe.init({
     name: DataTypes.STRING,
     image: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Recipe',
