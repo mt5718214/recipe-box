@@ -4,9 +4,19 @@ const passport = require('passport')
 const bcrypt = require('bcryptjs')
 const db = require('../../models')
 const User = db.User
+const Recipe = db.Recipe
 
+//首頁總攬
 router.get('/', (req, res) => {
-  res.render('index')
+  Recipe.findAll({
+    include: [User],
+    order: [['createdAt', 'desc']],
+    raw: true,
+    nest: true
+  })
+    .then(recipes => res.render('index', {
+      recipes
+    }))
 })
 
 router.get('/login', (req, res) => {
