@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.addColumn('Recipes', 'UserId', {
       type: Sequelize.INTEGER,
-      allowNull: true,
+      allowNull: false,
       reference: {
         model: 'Users',
         key: 'id'
