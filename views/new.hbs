@@ -19,7 +19,7 @@
   <div class="col-6 py-1">
     <h3>Ingredients</h3>
     <div class="border border-1 p-2">
-      <ol class="ingredients p-0" style="list-style-type:none">
+      <ol class="ingredients-field p-0" style="list-style-type:none">
         {{!-- Data generate by user --}}
       </ol>
       <a class="btn btn-dark btn-sm" id="addIngredientBtn">Add ingredient</a>
@@ -28,7 +28,7 @@
   <div class="col-6 py-1 mb-3">
     <h3>Directions</h3>
     <div class="border border-1 p-2">
-      <ol class="directions p-0" style="list-style-type:none">
+      <ol class="directions-field p-0" style="list-style-type:none">
         {{!-- Data generate by user --}}
       </ol>
       <a class="btn btn-dark btn-sm" id="addStepBtn">Add Step</a>
@@ -42,19 +42,20 @@
 </form>
 
 <script>
-  const directions = document.querySelector('.directions')
-  const ingredients = document.querySelector('.ingredients')
   const addIngredientBtn = document.querySelector('#addIngredientBtn')
   const addStepBtn = document.querySelector('#addStepBtn')
+  const ingredientsField = document.querySelector('.ingredients-field')
+  const directionsField = document.querySelector('.directions-field')
 
-  //EventListener
+  /* EventListener */
   addIngredientBtn.addEventListener('click', () => {
     const li = document.createElement('li')
     li.innerHTML = `<div class="input-group mb-3">
                       <span class="input-group-text">name</span>
                       <input type="text" class="form-control" name="ingredientsItems">
+                      <a class="btn btn-danger remove-btn">remove</a>
                     </div>`
-    ingredients.append(li)
+    ingredientsField.append(li)
   })
 
   addStepBtn.addEventListener('click', () => {
@@ -62,7 +63,21 @@
     li.innerHTML = `<div class="input-group mb-3">
                       <span class="input-group-text">step</span>
                       <input type="text" class="form-control" name="stepsItems">
+                      <a class="btn btn-danger remove-btn">remove</a>
                     </div>`
-    directions.append(li)
+    directionsField.append(li)
+  })
+
+  ingredientsField.addEventListener('click', (event) => {
+    //event.target.classList回傳類陣列，因此不能用陣列方法includes()
+    if (event.target.classList.contains('remove-btn')) {
+      event.target.parentElement.remove()
+    }
+  })
+
+  directionsField.addEventListener('click', (event) => {
+    if (event.target.classList.contains('remove-btn')) {
+      event.target.parentElement.remove()
+    }
   })
 </script>
