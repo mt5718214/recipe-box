@@ -1,0 +1,68 @@
+<h1>New Recipe</h1>
+<br>
+{{>message}}
+<form class="row" action="/recipes/new" method="POST">
+  <div class="input-group mb-3">
+    <span class="input-group-text">* Title</span>
+    <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Title"
+      aria-describedby="basic-addon1" required>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text">* Description</span>
+    <input type="text" class="form-control" placeholder="Description" name="description" aria-label="Description"
+      aria-describedby="basic-addon1" required>
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text">image</span>
+    <input type="file" class="form-control" name="image" aria-label="image" aria-describedby="basic-addon1">
+  </div>
+  <div class="col-6 py-1">
+    <h3>Ingredients</h3>
+    <div class="border border-1 p-2">
+      <ol class="ingredients p-0" style="list-style-type:none">
+        {{!-- Data generate by user --}}
+      </ol>
+      <a class="btn btn-dark btn-sm" id="addIngredientBtn">Add ingredient</a>
+    </div>
+  </div>
+  <div class="col-6 py-1 mb-3">
+    <h3>Directions</h3>
+    <div class="border border-1 p-2">
+      <ol class="directions p-0" style="list-style-type:none">
+        {{!-- Data generate by user --}}
+      </ol>
+      <a class="btn btn-dark btn-sm" id="addStepBtn">Add Step</a>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-primary btn-sm" type="submit">Create Recipe</button>
+    <a class="btn btn-dark btn-sm" href="/">Cancel</a>
+  </div>
+</form>
+
+<script>
+  const directions = document.querySelector('.directions')
+  const ingredients = document.querySelector('.ingredients')
+  const addIngredientBtn = document.querySelector('#addIngredientBtn')
+  const addStepBtn = document.querySelector('#addStepBtn')
+
+  //EventListener
+  addIngredientBtn.addEventListener('click', () => {
+    const li = document.createElement('li')
+    li.innerHTML = `<div class="input-group mb-3">
+                      <span class="input-group-text">name</span>
+                      <input type="text" class="form-control" name="ingredientsItems">
+                    </div>`
+    ingredients.append(li)
+  })
+
+  addStepBtn.addEventListener('click', () => {
+    const li = document.createElement('li')
+    li.innerHTML = `<div class="input-group mb-3">
+                      <span class="input-group-text">step</span>
+                      <input type="text" class="form-control" name="stepsItems">
+                    </div>`
+    directions.append(li)
+  })
+</script>
