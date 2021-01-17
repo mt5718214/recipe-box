@@ -5,9 +5,10 @@ const bcrypt = require('bcryptjs')
 const db = require('../../models')
 const User = db.User
 const Recipe = db.Recipe
+const { authenticator } = require('../../middleware/auth')
 
 //首頁總攬
-router.get('/', (req, res) => {
+router.get('/', authenticator, (req, res) => {
   Recipe.findAll({
     include: [User],
     order: [['createdAt', 'desc']],
