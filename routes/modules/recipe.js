@@ -16,7 +16,7 @@ router.get('/my-recipe', (req, res) => {
     ]
   })
     .then(user => {
-      res.render('recipe', {
+      res.render('myrecipe', {
         user: user.toJSON()
       })
     })
@@ -67,6 +67,18 @@ router.post('/new', (req, res) => {
         res.redirect('/recipes/my-recipe')
       })
   })
+})
+
+//瀏覽食譜
+router.get('/:recipeId', (req, res) => {
+  Recipe.findByPk(req.params.recipeId, {
+    include: [Ingredient, Direction, User]
+  })
+    .then(recipe => {
+      res.render('recipe', {
+        recipe: recipe.toJSON()
+      })
+    })
 })
 
 module.exports = router

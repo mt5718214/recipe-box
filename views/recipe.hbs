@@ -1,14 +1,32 @@
 <div class="row">
-  {{#each user.Recipes}}
   <div class="col-12 col-md-4">
-    <div class="card">
-      <a href="/recipes/{{this.id}}">
-        <img src="{{this.image}}" class="card-img-top" alt="image">
-      </a>
-      <div class="card-body">
-        <h5 class="card-title">{{this.name}}</h5>
-      </div>
+    <div class="recipeAvatar">
+      <img class="w-100" src="{{recipe.image}}" alt="image">
     </div>
   </div>
-  {{/each}}
+
+  <div class="col-12 col-md-8">
+    <div class="p-4 border border-1 h-100">
+      <h1 class="fw-bolder text-danger">{{recipe.name}}</h1>
+      <p>{{recipe.description}}</p>
+      <span class="fw-lighter"><em>Created by {{recipe.User.name}}</em></span>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 mt-4">
+    <h3>Ingredients</h3>
+    <ul>
+      {{#each recipe.Ingredients}}
+      <li>{{this.content}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class="col-12 col-md-6 mt-4">
+    <h3>Directions</h3>
+    <ul>
+      {{#each recipe.Directions}}
+      <li>{{this.content}}</li>
+      {{/each}}
+    </ul>
+  </div>
 </div>
