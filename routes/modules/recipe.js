@@ -81,4 +81,51 @@ router.get('/:recipeId', (req, res) => {
     })
 })
 
+//編輯食譜頁面
+router.get('/:recipeId/edit', (req, res) => {
+  Recipe.findByPk(req.params.recipeId, {
+    include: [Ingredient, Direction]
+  })
+    .then(recipe => {
+      res.render('edit', {
+        recipe: recipe.toJSON()
+      })
+    })
+})
+
+//更新食譜
+router.put('/:recipeId/edit', (req, res) => {
+  const { title, description } = req.body
+  const promiseArray = []
+
+  //檢查title,description是否為空值
+  if (!title.trim() || !description.trim()) {
+    req.flash('warning_msg', '標題和描述為必填')
+    return res.redirect('back')
+  }
+
+  return Recipe.findByPk(req.params.recipeId, {
+    include: [Ingredient, Direction]
+  }).then(recipe => {
+    recipe.Ingredients = recipe.Ingredients.map((ingredient, index) => ({
+      ...ingredient.dataValues,
+      content: req.body.ingredientsItems[index] ? req.body.ingredientsItems[index] : recipe.Ingredients[index].content,
+      updatedAt: Date.now()
+    }))
+
+    return Promise.all([
+      recipe.update({
+        name: title,
+        description: description
+      }),
+      Ingredient.bulkCreate(
+        recipe.Ingredients,
+        { updateOnDuplicate: ['content', 'updatedAt'] }
+      )
+    ]).then(([recipe, Ingredient]) => {
+      res.redirect(`/recipes/${recipe.id}`)
+    })
+  })
+})
+
 module.exports = router

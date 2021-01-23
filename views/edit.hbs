@@ -1,0 +1,57 @@
+<h1>Edit Recipe</h1>
+<br>
+{{>message}}
+<form class="row" action="/recipes/{{recipe.id}}/edit?_method=PUT" method="POST">
+  <div class="input-group mb-3">
+    <span class="input-group-text">* Title</span>
+    <input type="text" class="form-control" placeholder="Title" name="title" aria-label="Title"
+      aria-describedby="basic-addon1" required value="{{recipe.name}}">
+  </div>
+  <div class="input-group mb-3">
+    <span class="input-group-text">* Description</span>
+    <input type="text" class="form-control" placeholder="Description" name="description" aria-label="Description"
+      aria-describedby="basic-addon1" required value="{{recipe.description}}">
+  </div>
+  <div class=" input-group mb-3">
+    <span class="input-group-text">image</span>
+    <input type="file" class="form-control" name="image" aria-label="image" aria-describedby="basic-addon1"
+      value="{{recipe.image}}">
+  </div>
+  <div class="col-6 py-1">
+    <h3>Ingredients</h3>
+    <div class="border border-1 p-2">
+      <ol class="ingredients-field p-0" style="list-style-type:none">
+        {{#if recipe.Ingredients}}
+        {{#each recipe.Ingredients}}
+        <div class="input-group mb-3">
+          <span class="input-group-text">name</span>
+          <input type="text" class="form-control" name="ingredientsItems" value="{{this.content}}">
+        </div>
+        {{/each}}
+        {{/if}}
+        {{!-- Data generate by user --}}
+      </ol>
+    </div>
+  </div>
+  <div class="col-6 py-1 mb-3">
+    <h3>Directions</h3>
+    <div class="border border-1 p-2">
+      <ol class="directions-field p-0" style="list-style-type:none">
+        {{#if recipe.Directions}}
+        {{#each recipe.Directions}}
+        <div class="input-group mb-3">
+          <span class="input-group-text">name</span>
+          <input type="text" class="form-control" name="stepsItems" value="{{this.content}}">
+        </div>
+        {{/each}}
+        {{/if}}
+        {{!-- Data generate by user --}}
+      </ol>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn btn-primary btn-sm" type="submit">Update</button>
+    <a class="btn btn-dark btn-sm" href="/recipes/{{recipe.id}}">Cancel</a>
+  </div>
+</form>

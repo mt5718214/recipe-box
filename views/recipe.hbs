@@ -9,7 +9,8 @@
     <div class="p-4 border border-1 h-100">
       <h1 class="fw-bolder text-danger">{{recipe.name}}</h1>
       <p>{{recipe.description}}</p>
-      <span class="fw-lighter"><em>Created by {{recipe.User.name}}</em></span>
+      <p class="fw-lighter"><em>Created by {{recipe.User.name}}</em></p>
+      <a href="/recipes/{{recipe.id}}/edit" class="btn btn-primary">edit</a>
     </div>
   </div>
 
