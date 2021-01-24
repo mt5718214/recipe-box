@@ -11,6 +11,9 @@
       <p>{{recipe.description}}</p>
       <p class="fw-lighter"><em>Created by {{recipe.User.name}}</em></p>
       <a href="/recipes/{{recipe.id}}/edit" class="btn btn-primary">edit</a>
+      <form action="/recipes/{{recipe.id}}/delete?_method=DELETE" method="POST" style="display: contents;">
+        <button class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">delete</button>
+      </form>
     </div>
   </div>
 

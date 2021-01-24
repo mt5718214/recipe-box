@@ -96,7 +96,6 @@ router.get('/:recipeId/edit', (req, res) => {
 //更新食譜
 router.put('/:recipeId/edit', (req, res) => {
   const { title, description } = req.body
-  const promiseArray = []
 
   //檢查title,description是否為空值
   if (!title.trim() || !description.trim()) {
@@ -126,6 +125,15 @@ router.put('/:recipeId/edit', (req, res) => {
       res.redirect(`/recipes/${recipe.id}`)
     })
   })
+})
+
+//刪除食譜
+router.delete('/:recipeId/delete', (req, res) => {
+  Recipe.findByPk(req.params.recipeId)
+    .then(recipe => {
+      recipe.destroy()
+        .then(recipe => res.redirect(`/recipes/my-recipe`))
+    })
 })
 
 module.exports = router
