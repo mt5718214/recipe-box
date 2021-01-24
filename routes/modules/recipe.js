@@ -76,7 +76,8 @@ router.get('/:recipeId', (req, res) => {
   })
     .then(recipe => {
       res.render('recipe', {
-        recipe: recipe.toJSON()
+        recipe: recipe.toJSON(),
+        currentUserId: req.user.id
       })
     })
 })
